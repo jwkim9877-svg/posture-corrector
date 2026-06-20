@@ -1,67 +1,85 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
-    <title>AI 자세 교정기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Posture Corrector</title>
 
-    <link rel="stylesheet" href="style.css">
+```
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
-    <h1>AI 자세 교정기</h1>
+<div class="container">
 
-    <video
-        id="video"
-        autoplay
-        playsinline>
-    </video> 
-    <canvas id="canvas"></canvas>
+```
+<h1>🧍 AI Posture Corrector</h1>
 
-    <div class="panel">
+<p class="subtitle">
+    실시간 거북목 감지 및 음성 교정 시스템
+</p>
 
-        <h2 id="status">
-            현재 자세 : 정상
-        </h2>
+<div class="status-card">
+    <h2 id="status">
+        현재 자세 : 정상 ✅
+    </h2>
+</div>
 
-        <div class="setting">
+<video
+    id="video"
+    autoplay
+    playsinline
+    muted>
+</video>
 
-            <label>경고 시간</label>
+<canvas id="canvas"></canvas>
 
-            <select id="alertTime">
-                <option value="5">5초</option>
-                <option value="30">30초</option>
-                <option value="60">1분</option>
-            </select>
+<div class="info-container">
 
-        </div>
+    <div class="card">
 
-        <div class="setting">
+        <h3>⏰ 경고 시간</h3>
 
-            <label>감지 대상</label>
-
-            <div>
-                <input type="checkbox" checked id="neck">
-                <label for="neck">거북목</label>
-            </div>
-
-
-        </div>
-
-        <h3 id="warningCount">
-            오늘 경고 횟수 : 0
-        </h3>
+        <select id="alertTime">
+            <option value="5">5초</option>
+            <option value="30">30초</option>
+            <option value="60">1분</option>
+        </select>
 
     </div>
+
+    <div class="card">
+
+        <h3>📊 오늘 경고 횟수</h3>
+
+        <p id="warningCount">0</p>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>
+        Developed by 김지원 · 2026
+    </p>
+</footer>
+```
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 
-</html> 
+</html>

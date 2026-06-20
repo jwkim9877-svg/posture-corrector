@@ -138,6 +138,8 @@ ratio > 1.12;
 {
     statusText.textContent =
     "현재 자세 : 거북목";
+    statusText.style.color =
+    "#e74c3c";
 
     if(!badPostureStart)
     {
@@ -164,6 +166,8 @@ else
 {
     statusText.textContent =
     "현재 자세 : 정상";
+    statusText.style.color =
+    "#27ae60";
 
     badPostureStart = null;
 }
