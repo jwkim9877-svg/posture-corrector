@@ -1,3 +1,9 @@
+let baseline = null;
+
+let baselineSamples = [];
+
+let baselineReady = false;
+
 const alertTimeSelect =
 document.getElementById("alertTime");
 
@@ -74,25 +80,60 @@ function onResults(results){
 
     if(results.poseLandmarks)
     {
-        const leftEar =
-        results.poseLandmarks[7];
+        const nose =
+results.poseLandmarks[0];
 
-        const rightEar =
-        results.poseLandmarks[8];
+const leftEar =
+results.poseLandmarks[7];
 
-        const leftShoulder =
-        results.poseLandmarks[11];
+const rightEar =
+results.poseLandmarks[8];
 
-        const rightShoulder =
-        results.poseLandmarks[12];
+const faceWidth =
+Math.abs(
+    leftEar.x - rightEar.x
+);
 
-        const earX =
-        (leftEar.x + rightEar.x) / 2;
+if(!baselineReady)
+{
+    baselineSamples.push(faceWidth);
 
-        const shoulderX =
-        (leftShoulder.x + rightShoulder.x) / 2;
+    if(baselineSamples.length >= 90)
+    {
+        baseline =
+        baselineSamples.reduce(
+            (a,b)=>a+b,
+            0
+        ) / baselineSamples.length;
 
-        const isBadPosture = earX - shoulderX > 0.015;
+        baselineReady = true;
+
+        console.log(
+            "기준 얼굴 크기 저장:",
+            baseline
+        );
+    }
+
+    statusText.textContent =
+    "기준 자세 측정 중...";
+
+    statusText.style.color =
+    "orange";
+
+    return;
+}
+
+const ratio =
+faceWidth / baseline;
+
+console.log(
+    "얼굴비율:",
+    ratio
+);
+
+const isBadPosture =
+ratio > 1.12;
+
         if(isBadPosture)
 {
     statusText.textContent =
