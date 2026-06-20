@@ -1,15 +1,15 @@
 const video = document.getElementById("video");
 
 navigator.mediaDevices.getUserMedia({
-    video:true
+    video: true
 })
-.then(function(stream){
+.then((stream) => {
 
     video.srcObject = stream;
 
 })
-.catch(function(error){
+.catch((error) => {
 
-    console.log(error);
+    console.error(error);
 
 });

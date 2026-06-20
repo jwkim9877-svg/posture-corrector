@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>AI 자세 교정기</title>
@@ -17,7 +18,58 @@
         playsinline>
     </video>
 
+    <div class="panel">
+
+        <h2 id="status">
+            현재 자세 : 정상
+        </h2>
+
+        <div class="setting">
+
+            <label>경고 시간</label>
+
+            <select id="alertTime">
+                <option value="5">5초</option>
+                <option value="30">30초</option>
+                <option value="60">1분</option>
+            </select>
+
+        </div>
+
+        <div class="setting">
+
+            <label>감지 대상</label>
+
+            <div>
+                <input type="checkbox" checked id="neck">
+                <label for="neck">거북목</label>
+            </div>
+
+            <div>
+                <input type="checkbox" checked id="shoulder">
+                <label for="shoulder">굽은 어깨</label>
+            </div>
+
+            <div>
+                <input type="checkbox" checked id="back">
+                <label for="back">구부정한 등</label>
+            </div>
+
+            <div>
+                <input type="checkbox" checked id="lean">
+                <label for="lean">기울어짐</label>
+            </div>
+
+        </div>
+
+        <h3 id="warningCount">
+            오늘 경고 횟수 : 0
+        </h3>
+
+    </div>
+
     <script src="script.js"></script>
 
 </body>
+
 </html>
