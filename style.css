@@ -25,3 +25,11 @@ video{
 label{
     font-size:18px;
 }
+canvas{
+    width:700px;
+    border:3px solid blue;
+    margin-top:10px;
+}
+#video{
+    display:none;
+}
