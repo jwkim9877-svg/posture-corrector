@@ -7,68 +7,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Posture Corrector</title>
 
-```
-<link rel="stylesheet" href="style.css">
-```
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="container">
 
-```
-<h1>🧍 AI Posture Corrector</h1>
+    <h1>🧍 AI Posture Corrector</h1>
 
-<p class="subtitle">
-    실시간 거북목 감지 및 음성 교정 시스템
-</p>
-
-<div class="status-card">
-    <h2 id="status">
-        현재 자세 : 정상 ✅
-    </h2>
-</div>
-
-<video
-    id="video"
-    autoplay
-    playsinline
-    muted>
-</video>
-
-<canvas id="canvas"></canvas>
-
-<div class="info-container">
-
-    <div class="card">
-
-        <h3>⏰ 경고 시간</h3>
-
-        <select id="alertTime">
-            <option value="5">5초</option>
-            <option value="30">30초</option>
-            <option value="60">1분</option>
-        </select>
-
-    </div>
-
-    <div class="card">
-
-        <h3>📊 오늘 경고 횟수</h3>
-
-        <p id="warningCount">0</p>
-
-    </div>
-
-</div>
-
-<footer>
-    <p>
-        Developed by 김지원 · 2026
+    <p class="subtitle">
+        실시간 거북목 감지 · 자세 교정 · 자세 리포트 시스템
     </p>
-</footer>
-```
+
+    <div class="status-card">
+        <h2 id="status">
+            현재 자세 : 정상 ✅
+        </h2>
+    </div>
+
+    <video
+        id="video"
+        autoplay
+        playsinline
+        muted>
+    </video>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="info-container">
+
+        <div class="card">
+
+            <h3>⏰ 경고 시간</h3>
+
+            <select id="alertTime">
+                <option value="5">5초</option>
+                <option value="30">30초</option>
+                <option value="60">1분</option>
+            </select>
+
+        </div>
+
+        <div class="card">
+
+            <h3>📊 오늘 경고 횟수</h3>
+
+            <p id="warningCount">0</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>🏆 자세 점수</h3>
+
+            <p id="postureScore">100점</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>⏱️ 자세 유지 시간</h3>
+
+            <p id="goodPostureTime">
+                0:00
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>🏅 최고 기록</h3>
+
+            <p id="bestPostureTime">
+                0:00
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="tip-card">
+
+        <h3>🧘 추천 스트레칭</h3>
+
+        <p id="stretchingTip">
+            좋은 자세를 유지하세요 👍
+        </p>
+
+    </div>
+
+    <div class="report-card">
+
+        <h3>📊 오늘 자세 리포트</h3>
+
+        <p id="dailyReport">
+            자세 점수 : 100점<br>
+            경고 횟수 : 0회<br>
+            등급 : A
+        </p>
+
+    </div>
+
+    <button id="resetBtn">
+        🔄 기준 자세 재설정
+    </button>
+
+    <footer>
+        <p>
+            Developed by 김지원 · 2026
+        </p>
+    </footer>
 
 </div>
 

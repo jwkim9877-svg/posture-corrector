@@ -1,8 +1,45 @@
+const stretchingTip =
+document.getElementById(
+    "stretchingTip"
+);
+
+let goodPostureStart =
+Date.now();
+
+const postureScore =
+document.getElementById(
+    "postureScore"
+);
+
+const bestPostureTime =
+document.getElementById(
+    "bestPostureTime"
+);
+
+let bestTime = 0;
+
+const dailyReport =
+document.getElementById(
+    "dailyReport"
+);
+
+const goodPostureTime =
+document.getElementById(
+    "goodPostureTime"
+);
+
+const resetBtn =
+document.getElementById("resetBtn");
+
+let currentTip =
+"좋은 자세를 유지하세요 👍";
+
 let baseline = null;
 
 let baselineSamples = [];
 
 let baselineReady = false;
+
 
 const alertTimeSelect =
 document.getElementById("alertTime");
@@ -134,12 +171,46 @@ console.log(
 const isBadPosture =
 ratio > 1.12;
 
-        if(isBadPosture)
+ if(isBadPosture)
 {
     statusText.textContent =
     "현재 자세 : 거북목";
     statusText.style.color =
     "#e74c3c";
+    goodPostureStart =
+    Date.now();
+
+    if(!badPostureStart)
+{
+    badPostureStart =
+    Date.now();
+
+    const tips = [
+
+    "목 뒤로 젖히기 5초",
+
+    "어깨 돌리기 10회",
+
+    "목 좌우 스트레칭",
+
+    "가슴 펴고 어깨 뒤로 당기기",
+
+    "턱 당기기 운동 10회"
+
+    ];
+
+    currentTip =
+    tips[
+        Math.floor(
+            Math.random() *
+            tips.length
+        )
+    ];
+
+    stretchingTip.textContent =
+    currentTip;
+}
+
 
     if(!badPostureStart)
     {
@@ -164,10 +235,51 @@ ratio > 1.12;
 }
 else
 {
+
+ stretchingTip.textContent =
+"좋은 자세를 유지하세요 👍";
+
     statusText.textContent =
-    "현재 자세 : 정상";
-    statusText.style.color =
-    "#27ae60";
+"현재 자세 : 정상 ✅";
+
+statusText.style.color =
+"#22c55e";
+
+badPostureStart = null;
+
+const elapsed =
+Math.floor(
+(
+Date.now() -
+goodPostureStart
+)
+/1000
+);
+
+if(elapsed > bestTime)
+{
+    bestTime = elapsed;
+}
+
+const minutes =
+Math.floor(
+elapsed / 60
+);
+
+const seconds =
+elapsed % 60;
+
+goodPostureTime.textContent =
+`${minutes}:${String(seconds).padStart(2,"0")}`;
+
+const bestMinutes =
+Math.floor(bestTime / 60);
+
+const bestSeconds =
+bestTime % 60;
+
+bestPostureTime.textContent =
+`${bestMinutes}:${String(bestSeconds).padStart(2,"0")}`;
 
     badPostureStart = null;
 }
@@ -207,6 +319,23 @@ const camera = new Camera(
 );
 
 camera.start();
+resetBtn.addEventListener(
+    "click",
+    () =>
+    {
+        baseline = null;
+        baselineSamples = [];
+        baselineReady = false;
+        goodPostureStart =
+        Date.now();
+
+        statusText.textContent =
+        "기준 자세 측정 중...";
+        statusText.style.color =
+        "#f39c12";
+
+    }
+);
 function triggerWarning()
 {
     const now =
@@ -225,8 +354,41 @@ function triggerWarning()
 
     warningCount++;
 
-    warningCountText.textContent =
-    `오늘 경고 횟수 : ${warningCount}`;
+   let score =
+    100 - warningCount * 5;
+    if(score < 0)
+{
+    score = 0;
+}
+
+postureScore.textContent =
+`${score}점`;
+
+warningCountText.textContent =
+warningCount;
+
+let grade = "A";
+
+if(score < 90)
+{
+grade = "B";
+}
+
+if(score < 80)
+{
+grade = "C";
+}
+
+if(score < 70)
+{
+grade = "D";
+}
+
+dailyReport.innerHTML =
+`자세 점수 : ${score}점<br>
+경고 횟수 : ${warningCount}회<br>
+등급 : ${grade}`;
+
 
     const msg =
     new SpeechSynthesisUtterance(
